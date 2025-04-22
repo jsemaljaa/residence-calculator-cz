@@ -1,0 +1,254 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.permit-entry {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.date-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown-group {
+    display: flex;
+    gap: 5px;
+}
+
+select {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    min-width: 100px;
+}
+
+.permit-type {
+    margin-left: auto;
+    min-width: 160px;
+}
+
+select:not([value]):not(:focus),
+select[value=""]:not(:focus) {
+    color: #999;
+    font-style: italic;
+}
+
+/* Normal text color when selected */
+select option {
+    color: #333;
+    font-style: normal;
+}
+
+/* Keep grey for placeholder option */
+select option[value=""] {
+    color: #999 !important;
+    font-style: italic;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#calculate-btn {
+    background-color: #4CAF50;
+    color: white;
+    float: right;
+}
+
+#add-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.remove-btn {
+    background-color: #ff4444;
+    color: white;
+    margin-left: 15px;
+}
+
+.remove-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.result-box {
+    /* display: none; */
+    margin: 30px auto 0;
+    padding: 50px;
+    border-radius: 24px;
+    font-size: 1.1em;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    width: 85%;
+    position: relative;
+    overflow: hidden;
+    background: white;
+    border: none;
+}
+
+.result-box.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.result-header {
+    font-size: 1.5em;
+    margin-bottom: 16px;
+    font-weight: 500;
+    color: #1B5E20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.result-main {
+    font-size: 2.4em;
+    margin: 20px 0;
+    font-weight: 700;
+    color: #2E7D32;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: baseline;
+}
+
+.result-details {
+    text-align: center;
+    font-size: 0.95em;
+    opacity: 0.9;
+    margin: 16px 0;
+    color: #616161;
+}
+
+.progress-info {
+    background: #F5F5F5;
+    padding: 20px;
+    border-radius: 16px;
+    margin: 24px 0;
+    border: 1px solid #E0E0E0;
+}
+
+.success::before,
+.error::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+}
+
+.success {
+    background: #FFFFFF;
+    box-shadow: 0 8px 24px rgba(76, 175, 80, 0.15);
+    color: #2E7D32;
+}
+
+.error {
+    background: #FFFFFF;
+    box-shadow: 0 8px 24px rgba(244, 67, 54, 0.15);
+    color: #C62828;
+}
+
+.result-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+}
+
+.success .result-header::before {
+    /* content: '✓'; */
+    font-size: 1.2em;
+}
+
+.error .result-header::before {
+    /* content: '!'; */
+    font-size: 1.2em;
+}
+
+.info-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    background-color: #2196F3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.info-link:hover {
+    background-color: #1976D2;
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.info-link::after {
+    content: "i";
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .permit-entry {
+        flex-wrap: wrap;
+    }
+    .date-group {
+        width: 100%;
+    }
+    .permit-type {
+        margin-left: 0;
+        border-left: none;
+        padding-left: 0;
+    }
+}

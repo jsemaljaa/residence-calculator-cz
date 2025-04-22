@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulačka délky pobytu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="calculator.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulačka délky pobytu</h1>
+        <a href="https://ipc.gov.cz/typy-viz-a-pobytu/obcane-tretich-zemi/dlouhodobe-pobyty/" 
+            class="info-link" 
+            target="_blank"
+            title="Oficiální informace o typech pobytu">
+        </a>
+        <div id="permits-container">
+            <!-- Initial permit entry will be created by JavaScript -->
+        </div>
+        <button id="add-btn">Přidat období</button>
+        <button id="calculate-btn">Spočítat celkový pobyt</button>
+        <div id="result" class="result-box"></div>
+    </div>
+</body>
+</html>
