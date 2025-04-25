@@ -171,9 +171,8 @@ button {
     font-size: 1.1em;
     text-align: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
+    opacity: 1;
+    transform: none;
     width: 85%;
     position: relative;
     overflow: hidden;
@@ -181,14 +180,9 @@ button {
     border: 1px solid #e2e8f0;
 }
 
-.result-box.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .result-header {
     font-size: 1.5em;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     font-weight: 600;
     color: #0f172a;
     display: flex;
@@ -202,7 +196,7 @@ button {
 .result-header::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 40px;
@@ -252,17 +246,6 @@ button {
     margin: 32px 0;
     border: 1px solid #e2e8f0;
     position: relative;
-    overflow: hidden;
-}
-
-.progress-info::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #10b981);
 }
 
 .progress-info > div:first-child {
@@ -309,47 +292,6 @@ button {
 
 .error .result-main {
     color: #ef4444;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.progress-info.animated > div:last-child {
-    animation: pulse 1.5s ease-in-out infinite;
-}
-
-.info-link {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 36px;
-    height: 36px;
-    background-color: #3b82f6;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-}
-
-.info-link:hover {
-    background-color: #2563eb;
-    transform: scale(1.1) rotate(15deg);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
