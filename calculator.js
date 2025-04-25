@@ -10,18 +10,9 @@ function createPermitEntry() {
     
     entry.innerHTML = `
         <div class="date-group">
-            <div class="dropdown-group">
-                <select class="start-date"><option value="">Den</option></select>
-                <select class="start-month"><option value="">Měsíc</option></select>
-                <select class="start-year"><option value="">Rok</option></select>
-
-            </div>
+            <input type="date" class="start-date" placeholder="Začátek">
             <span>–</span>
-            <div class="dropdown-group">
-                <select class="end-date"><option value="">Den</select>
-                <select class="end-month"><option value="">Měsíc</select>
-                <select class="end-year"><option value="">Rok</select>
-            </div>
+            <input type="date" class="end-date" placeholder="Konec">
         </div>
         <select class="permit-type">
             <option value="">Vyberte typ povolení</option>
@@ -37,64 +28,8 @@ function createPermitEntry() {
         <button class="remove-btn">Odstranit</button>
     `;
 
-    populateDropdowns(entry);
     entry.querySelector('.remove-btn').addEventListener('click', () => removePermitEntry(entry));
     return entry;
-}
-
-function populateDropdowns(entry) {
-    // Days
-    ['start-date', 'end-date'].forEach(prefix => {
-        const select = entry.querySelector(`.${prefix}`);
-        for(let day = 1; day <= 31; day++) {
-            const option = document.createElement('option');
-            option.value = day.toString().padStart(2, '0');
-            option.textContent = day;
-            select.appendChild(option);
-        }
-    });
-
-    // Months
-    ['start-month', 'end-month'].forEach(prefix => {
-        const select = entry.querySelector(`.${prefix}`);
-        const months = [
-            'Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen',
-            'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'
-        ];
-        months.forEach((month, index) => {
-            const option = document.createElement('option');
-            option.value = (index + 1).toString().padStart(2, '0');
-            option.textContent = month;
-            select.appendChild(option);
-        });
-    });
-
-    // Years
-    ['start-year', 'end-year'].forEach(prefix => {
-        const select = entry.querySelector(`.${prefix}`);
-        const currentYear = new Date().getFullYear();
-        for(let year = currentYear; year >= 2010; year--) {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            select.appendChild(option);
-        }
-    });
-    
-    const handleSelectStyle = (select) => {
-        select.style.color = select.value ? '#333' : '#999';
-        select.addEventListener('change', () => {
-            select.style.color = select.value ? '#333' : '#999';
-        });
-    };
-    
-    ['start-date', 'start-month', 'start-year', 
-     'end-date', 'end-month', 'end-year'].forEach(prefix => {
-        const select = entry.querySelector(`.${prefix}`);
-        handleSelectStyle(select);
-    });
-    
-    handleSelectStyle(entry.querySelector('.permit-type'));
 }
 
 function addPermitEntry() {
@@ -177,17 +112,9 @@ function calculateResidence() {
 }
 
 function getDateFromEntry(entry, prefix) {
-    const year = entry.querySelector(`.${prefix}-year`).value;
-    const month = entry.querySelector(`.${prefix}-month`).value;
-    const day = entry.querySelector(`.${prefix}-date`).value;
-    
-    if (!year || !month || !day) return null;
-    
-    const dateString = `${year}-${month}-${day.padStart(2, '0')}`;
-    const date = new Date(dateString);
-    
-    // Handle invalid dates (like February 30)
-    return date.toString() === 'Invalid Date' ? null : date;
+    const dateString = entry.querySelector(`.${prefix}-date`).value;
+    if (!dateString) return null;
+    return new Date(dateString);
 }
 
 function calculateDaysBetween(start, end) {
