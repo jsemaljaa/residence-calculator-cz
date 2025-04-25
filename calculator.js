@@ -171,7 +171,7 @@ function displayResult(totalDays, error, lastDate, daysNeeded) {
 
     // Calculate approximate application date from the last date
     const applicationDate = new Date(lastDate);
-    applicationDate.setDate(lastDate.getDate() + daysNeeded);
+    applicationDate.setDate(lastDate.getDate() + daysNeeded + 1);
     
     const formattedApplicationDate = applicationDate.toLocaleDateString('cs-CZ', {
         day: '2-digit',
