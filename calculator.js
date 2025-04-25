@@ -17,13 +17,7 @@ function createPermitEntry() {
         <select class="permit-type">
             <option value="">Vyberte typ povolení</option>
             <option value="24">Studium</option>
-            <option value="26">Vědecký výzkum</option>
-            <option value="26">Hledání zaměstnání, zahájení podnikatelské činnosti</option>
-            <option value="26">Podnikání</option>
-            <option value="26">Sloučení rodiny, společné soužití rodiny</option>
-            <option value="26">Investování</option>
-            <option value="26">Zaměstnanecká/modrá karta</option>
-            <option value="26">Účel kulturní, sportovní, zdravotní</option>
+            <option value="26">Ostatní dlouhodobé víza/pobyty</option>
         </select>
         <button class="remove-btn">Odstranit</button>
     `;

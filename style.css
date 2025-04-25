@@ -62,6 +62,12 @@ h1::after {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex: 1;
+}
+
+.permit-type {
+    min-width: 140px;
+    width: auto;
 }
 
 input[type="date"] {
@@ -364,36 +370,6 @@ button {
     .info-link:last-child .info-text {
         content: "Nepřetržitý pobyt";
     }
-}
-
-@media (max-width: 480px) {
-    .info-links {
-        bottom: 16px;
-        right: 16px;
-    }
-
-    .info-link {
-        padding: 6px 10px;
-        font-size: 0.75em;
-    }
-}
-
-/* Mobile and Small Screen Styles */
-@media (max-width: 768px) {
-    body {
-        padding: 12px;
-    }
-
-    .container {
-        padding: 20px;
-        border-radius: 12px;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        padding-bottom: 0.75rem;
-    }
 
     .permit-entry {
         flex-direction: column;
@@ -468,6 +444,18 @@ button {
 
     .progress-info > div:last-child {
         font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-links {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .info-link {
+        padding: 6px 10px;
+        font-size: 0.75em;
     }
 }
 
