@@ -445,6 +445,15 @@ button {
     .progress-info > div:last-child {
         font-size: 1.5em;
     }
+
+    .approximate-date {
+        padding: 12px;
+        margin-top: 16px;
+    }
+    
+    .date-value {
+        font-size: 1.2em;
+    }
 }
 
 @media (max-width: 480px) {
@@ -500,4 +509,32 @@ button {
         font-size: 0.9em;
         margin-bottom: 20px;
     }
+}
+
+.approximate-date {
+    margin-top: 24px;
+    padding: 16px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.approximate-date > div:first-child {
+    color: #64748b;
+    font-size: 0.95em;
+    margin-bottom: 12px;
+}
+
+.date-value {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 8px 0;
+}
+
+.date-note {
+    font-size: 0.85em;
+    color: #64748b;
+    margin-top: 12px;
+    font-style: italic;
 }

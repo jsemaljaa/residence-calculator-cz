@@ -80,7 +80,7 @@ function calculateResidence() {
             return;
         }
 
-        dateRanges.push({ start, end });
+        dateRanges.push({ start, end, type });
     });
 
     if (error) {
@@ -109,13 +109,25 @@ function calculateResidence() {
         return;
     }
 
-    // Calculate total days if valid
-    entries.forEach((entry, index) => {
-        const days = calculateDaysBetween(dateRanges[index].start, dateRanges[index].end);
-        totalDays += applyTypeModifier(days, entry.querySelector('.permit-type').value);
+    // Calculate total days with permit type modifiers
+    dateRanges.forEach(range => {
+        const days = calculateDaysBetween(range.start, range.end);
+        const modifier = range.type === '24' ? 0.5 : 1;
+        totalDays += days * modifier;
     });
 
-    displayResult(totalDays, error);
+    // Find the most recent end date
+    let lastDate = null;
+    dateRanges.forEach(range => {
+        if (!lastDate || range.end > lastDate) {
+            lastDate = range.end;
+        }
+    });
+
+    // Calculate days needed assuming type 26 permit (1 day = 1 day)
+    const daysNeeded = Math.ceil(1825 - totalDays);
+
+    displayResult(totalDays, error, lastDate, daysNeeded);
 }
 
 function getDateFromEntry(entry, prefix) {
@@ -137,7 +149,7 @@ function applyTypeModifier(days, type) {
     return ['24', '25'].includes(type) ? days / 2 : days;
 }
 
-function displayResult(totalDays, error) {
+function displayResult(totalDays, error, lastDate, daysNeeded) {
     const resultDiv = document.getElementById('result');
     resultDiv.className = error ? 'error visible' : 'success visible';
     resultDiv.innerHTML = '';
@@ -157,9 +169,20 @@ function displayResult(totalDays, error) {
     const yearsToFive = Math.floor(daysToFiveYears / 365);
     const daysRemaining = daysToFiveYears % 365;
 
-    resultDiv.innerHTML = `
-        <div class="result-header">Celková doba pobytu</div>
+    // Calculate approximate application date from the last date
+    const applicationDate = new Date(lastDate);
+    applicationDate.setDate(lastDate.getDate() + daysNeeded);
+    
+    const formattedApplicationDate = applicationDate.toLocaleDateString('cs-CZ', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
 
+    let resultHTML = `
+        <div class="result-header">
+            <span>${daysToFiveYears > 0 ? '❌' : '✅'} ${daysToFiveYears > 0 ? 'Ještě nemůžete žádat' : 'Můžete žádat o trvalý pobyt'}</span>
+        </div>
         <div class="result-main">
             <span>${totalYears}</span>
             <span style="font-size: 0.6em; color: #757575">let</span>
@@ -167,35 +190,25 @@ function displayResult(totalDays, error) {
             <span>${remainingDays}</span>
             <span style="font-size: 0.6em; color: #757575">dní</span>
         </div>
-
         <div class="result-details">
-            ${totalDays.toLocaleString()} celkem dní
+            <div>${daysToFiveYears > 0 ? `Chybí ještě ${daysToFiveYears} dní` : 'Splněna podmínka 5 let nepřetržitého pobytu'}</div>
         </div>
-
         <div class="progress-info">
-            <div style="margin-bottom: 12px; color: #616161;">
-                ${daysToFiveYears > 0 ? 'Do 5 let zbývá:' : 'Dosaženo 5 let pobytu:'}
-            </div>
-
-            <div style="font-size: 1.6em; color: ${daysToFiveYears <= 0 ? '#2E7D32' : '#D32F2F'}; font-weight: 500;">
-                ${daysToFiveYears > 0 ? 
-                    `${yearsToFive > 0 ? `${yearsToFive} let ` : ''}${daysRemaining} dní` : 
-                    '✓ Splněno'}
-            </div>
+            <div>${daysToFiveYears > 0 ? 'Postup splnění podmínky' : 'Podmínka splněna'}</div>
+            <div>${Math.min((totalDays / 1825) * 100, 100).toFixed(1)}%</div>
         </div>
-                
-        <div style="margin-top: 24px; font-size: 0.85em; color: #757575;">
-            * 5 let = 1825 dní
+        ${daysToFiveYears > 0 ? `
+        <div class="approximate-date">
+            <div>Přibližné datum, kdy budete moci podat žádost:</div>
+            <div class="date-value">${formattedApplicationDate}</div>
+            <div class="date-note">* Toto je pouze přibližný výpočet. Skutečné datum může být ovlivněno různými faktory.</div>
         </div>
+        ` : ''}
     `;
 
-    // Add subtle animation for days counter
-    if (daysToFiveYears > 0) {
-        const counter = resultDiv.querySelector('.progress-info div');
-        if (counter) {
-            counter.style.animation = 'pulse 1.5s ease-in-out infinite';
-        }
-    }
+    resultDiv.innerHTML = resultHTML;
+    resultDiv.className = `result-box ${daysToFiveYears > 0 ? 'error' : 'success'}`;
+    resultDiv.style.display = 'block';
 }
 
 function initializeFirstEntry() {
