@@ -171,13 +171,16 @@ button {
     font-size: 1.1em;
     text-align: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    opacity: 1;
-    transform: none;
     width: 85%;
     position: relative;
     overflow: hidden;
     background: white;
     border: 1px solid #e2e8f0;
+    display: none;
+}
+
+.result-box.visible {
+    display: block;
 }
 
 .result-header {
@@ -294,43 +297,195 @@ button {
     color: #ef4444;
 }
 
+.info-links {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #3b82f6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.info-link:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.info-text {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .info-text {
+        display: inline;
+    }
+}
+
 @media (max-width: 768px) {
+    .info-links {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        top: auto;
+        z-index: 100;
+    }
+
+    .info-link {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    .info-text {
+        display: inline;
+    }
+
+    .info-link:first-child .info-text {
+        content: "Trvalý pobyt";
+    }
+
+    .info-link:last-child .info-text {
+        content: "Nepřetržitý pobyt";
+    }
+}
+
+@media (max-width: 480px) {
+    .info-links {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .info-link {
+        padding: 6px 10px;
+        font-size: 0.75em;
+    }
+}
+
+/* Mobile and Small Screen Styles */
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+
     .container {
         padding: 20px;
+        border-radius: 12px;
     }
-    
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+    }
+
     .permit-entry {
-        flex-wrap: wrap;
-        gap: 15px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 16px;
     }
-    
+
     .date-group {
-        width: 100%;
-        flex-wrap: wrap;
-    }
-    
-    .permit-type {
-        margin-left: 0;
+        flex-direction: column;
+        gap: 8px;
         width: 100%;
     }
-    
+
     input[type="date"],
     select {
         width: 100%;
+        min-width: unset;
     }
-    
+
+    .permit-type {
+        width: 100%;
+    }
+
+    .remove-btn {
+        align-self: flex-end;
+        margin-top: 8px;
+    }
+
+    #add-btn,
+    #calculate-btn {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    #calculate-btn {
+        float: none;
+    }
+
     .result-box {
         width: 100%;
         padding: 24px;
         margin-top: 24px;
+        border-radius: 12px;
+    }
+
+    .result-header {
+        font-size: 1.2em;
+        margin-bottom: 24px;
     }
 
     .result-main {
-        font-size: 2.2em;
+        font-size: 2em;
         margin: 24px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .result-main span {
+        text-align: center;
+    }
+
+    .result-details {
+        width: 100%;
+        margin: 12px 0;
     }
 
     .progress-info {
-        padding: 24px;
+        padding: 20px;
+        margin: 24px 0;
+    }
+
+    .progress-info > div:last-child {
+        font-size: 1.5em;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .container {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .result-main {
+        font-size: 1.8em;
+    }
+
+    .progress-info {
+        padding: 16px;
     }
 }
