@@ -58,18 +58,31 @@ function calculateResidence() {
     const dateRanges = [];
 
     // First pass: validate individual entries
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
         const start = getDateFromEntry(entry, 'start');
         const end = getDateFromEntry(entry, 'end');
         const type = entry.querySelector('.permit-type').value;
         
-        if (!start || !end || !type) {
-            error = 'Vyplňte všechna pole';
+        // Check for missing fields
+        const missingFields = [];
+        if (!start) missingFields.push('datum začátku');
+        if (!end) missingFields.push('datum konce');
+        if (!type) missingFields.push('typ povolení');
+
+        if (missingFields.length > 0) {
+            const entryNumber = index + 1;
+            if (missingFields.length === 1) {
+                error = `V období ${entryNumber} chybí ${missingFields[0]}`;
+            } else if (missingFields.length === 2) {
+                error = `V období ${entryNumber} chybí ${missingFields[0]} a ${missingFields[1]}`;
+            } else {
+                error = `V období ${entryNumber} chybí ${missingFields[0]}, ${missingFields[1]} a ${missingFields[2]}`;
+            }
             return;
         }
 
         if (start > end) {
-            error = 'Datum konce nesmí být před datem začátku';
+            error = `V období ${index + 1} je datum začátku pobytu později než datum konce pobytu`;
             return;
         }
 
@@ -90,7 +103,7 @@ function calculateResidence() {
                 dateRanges[j].start,
                 dateRanges[j].end
             )) {
-                error = 'Období pobytu se nesmí překrývat';
+                error = `Období ${i + 1} a ${j + 1} se překrývají`;
                 break;
             }
         }
