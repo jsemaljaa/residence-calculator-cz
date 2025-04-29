@@ -348,27 +348,53 @@ button {
 @media (max-width: 768px) {
     .info-links {
         position: fixed;
-        bottom: 20px;
+        top: 20px;
         right: 20px;
-        top: auto;
+        bottom: auto;
         z-index: 100;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
     .info-link {
         padding: 6px 12px;
         font-size: 0.8em;
+        background-color: #3b82f6;
+        color: white;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+    }
+
+    .info-link:hover {
+        background-color: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .info-text {
         display: inline;
+        font-size: 0.9em;
+        color: white;
     }
 
     .info-link:first-child .info-text {
+        display: none;
+    }
+
+    .info-link:first-child::after {
         content: "Trvalý pobyt";
+        color: white;
     }
 
     .info-link:last-child .info-text {
+        display: none;
+    }
+
+    .info-link:last-child::after {
         content: "Nepřetržitý pobyt";
+        color: white;
     }
 
     .permit-entry {
@@ -458,12 +484,12 @@ button {
 
 @media (max-width: 480px) {
     .info-links {
-        bottom: 16px;
+        top: 16px;
         right: 16px;
     }
 
     .info-link {
-        padding: 6px 10px;
+        padding: 5px 10px;
         font-size: 0.75em;
     }
 }
@@ -489,13 +515,26 @@ button {
 
 .info-text-box {
     background-color: #f8fafc;
-    border-left: 4px solid #3b82f6;
-    padding: 16px 20px;
-    margin: 0 0 24px 0;
-    border-radius: 0 8px 8px 0;
-    font-size: 0.95em;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    line-height: 1.6;
     color: #1e293b;
-    line-height: 1.5;
+}
+
+.info-text-box a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: rgba(59, 130, 246, 0.1);
+    transition: all 0.2s ease;
+}
+
+.info-text-box a:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #2563eb;
 }
 
 .info-text-box strong {
