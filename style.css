@@ -14,7 +14,8 @@ body {
 
 .container {
     background-color: white;
-    padding: 40px;
+    padding: 20px;
+    margin-top: 20px;
     border-radius: 16px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
@@ -110,6 +111,14 @@ select {
     background-color: #f8fafc;
     color: #1e293b;
     transition: all 0.2s ease;
+    padding-right: 32px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 select:focus {
@@ -346,6 +355,16 @@ button {
 }
 
 @media (max-width: 768px) {
+    .container {
+        /* padding-top: 80px; */
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    h1 {
+        margin-bottom: 1.5rem;
+    }
+
     .info-links {
         position: fixed;
         top: 20px;
@@ -418,6 +437,8 @@ button {
 
     .permit-type {
         width: 100%;
+        margin-top: 10px;
+        background-position: right 16px center;
     }
 
     .remove-btn {
