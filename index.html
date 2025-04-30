@@ -1,44 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulačka délky pobytu</title>
+    <title data-translate="title">Kalkulačka trvalého pobytu</title>
     <link rel="icon" type="image/x-icon" href="clock.svg">
     <link rel="stylesheet" href="style.css">
-    <script src="calculator.js" defer></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+    <button class="language-toggle" onclick="toggleLanguage()">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcng9IjIiIHJ5PSIyIj48L3JlY3Q+PGxpbmUgeDE9IjciIHkxPSI3IiB4Mj0iMTciIHkyPSI3Ij48L2xpbmU+PGxpbmUgeDE9IjciIHkxPSIxMiIgeDI9IjE3IiB5Mj0iMTIiPjwvbGluZT48bGluZSB4MT0iNyIgeTE9IjE3IiB4Mj0iMTciIHkyPSIxNyI+PC9saW5lPjwvc3ZnPg==" alt="Language">
+        <span data-translate="langButton">CZ</span>
+    </button>
+
     <div class="container">
-        <h1>Kalkulačka délky pobytu</h1>
+        <h1 data-translate="title">Kalkulačka trvalého pobytu</h1>
+        
         <div class="info-text-box">
-            Povolení k trvalému pobytu se na žádost vydá občanům třetích zemí, kteří ke dni podání žádosti pobývají na území České republiky <strong>nepřetržitě po dobu nejméně 5 let.</strong>
+            <span data-translate="infoText1">Povolení k trvalému pobytu se na žádost vydá občanům třetích zemí, kteří ke dni podání žádosti pobývají na území České republiky</span> 
+            <strong data-translate="infoText1Bold">nepřetržitě po dobu nejméně 5 let.</strong>
         </div>
+        
         <div class="info-text-box">
-            Pokud potřebujete zjistit přesné informace o délkách jednotlivých pobytů, můžete si vyžádat potvrzení o <a href="https://ipc.gov.cz/formulare-a-dokumenty/historie-pobytu/">Historii pobytu</a> na příslušném pracovišti Odboru azylové a migrační politiky Ministerstva vnitra (OAMP MVČR).
+            <span data-translate="infoText2">Pokud potřebujete zjistit přesné informace o délkách jednotlivých pobytů, můžete si vyžádat potvrzení o</span> 
+            <a href="https://ipc.gov.cz/formulare-a-dokumenty/historie-pobytu/" data-translate="historyLink">Historii pobytu</a> 
+            <span data-translate="infoText2End">na příslušném pracovišti Odboru azylové a migrační politiky Ministerstva vnitra (OAMP MVČR).</span>
         </div>
+
         <div class="info-links">
             <a href="https://ipc.gov.cz/typy-viz-a-pobytu/obcane-tretich-zemi/trvaly-pobyt/" 
                 class="info-link" 
                 target="_blank"
                 title="Informace o trvalých pobytech pro občany třetích zemí">
-                <span class="info-text">Info o trvalých pobytech</span>
+                <span class="info-text" data-translate="residenceInfo">Info o trvalých pobytech</span>
             </a>
             <a href="https://ipc.gov.cz/spravni-rizeni/nepretrzity-pobyt/" 
                 class="info-link" 
                 target="_blank"
                 title="Informace o nepřetržitém pobytu">
-                <span class="info-text">Co je nepřetržitý pobyt</span>
+                <span class="info-text" data-translate="continuousStayInfo">Co je nepřetržitý pobyt</span>
             </a>
         </div>
+
         <div id="permits-container">
             <!-- Initial permit entry will be created by JavaScript -->
         </div>
-        <button id="add-btn">Přidat období</button>
-        <button id="calculate-btn">Spočítat celkový pobyt</button>
+
+        <button id="add-btn" data-translate="addPeriod">Přidat období</button>
+        <button id="calculate-btn" data-translate="calculate">Spočítat celkový pobyt</button>
         
         <div id="result" class="result-box"></div>
     </div>
+
+    <script src="translations.js"></script>
+    <script src="calculator.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

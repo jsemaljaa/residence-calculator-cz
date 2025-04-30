@@ -404,22 +404,8 @@ button {
         color: white;
     }
 
-    .info-link:first-child .info-text {
-        display: none;
-    }
-
-    .info-link:first-child::after {
-        content: "Trvalý pobyt";
-        color: white;
-    }
-
-    .info-link:last-child .info-text {
-        display: none;
-    }
-
-    .info-link:last-child::after {
-        content: "Nepřetržitý pobyt";
-        color: white;
+    .info-link .info-text {
+        display: inline;
     }
 
     .permit-entry {
@@ -603,4 +589,47 @@ button {
     color: #64748b;
     margin-top: 12px;
     font-style: italic;
+}
+
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    border: none;
+}
+
+.language-toggle:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.language-toggle img {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .language-toggle {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .language-toggle img {
+        width: 16px;
+        height: 16px;
+    }
 }
